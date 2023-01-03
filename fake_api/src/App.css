@@ -1,0 +1,25 @@
+.App {
+ text-align: center;
+}
+ ul li {
+  list-style: none;
+}
+
+.add-product {
+  letter-spacing: 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+form input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+
+}

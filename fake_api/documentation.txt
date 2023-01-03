@@ -1,0 +1,72 @@
+Projeto para validar os conhecimento sobre Json Server.
+
+Para à utilização do projeto, no terminal execute:
+
+npm install -> Instalação dos pacotes do node_modules
+npm start -> Inicializar o projeto localmente sem a API Fake.
+npm run server -> Inicializar o projeto localmente com a API Fake.
+
+Tem como fins práticar o apreendido no curso de React, especificamente sobre uma API fake para simuluar
+um ambiente real de desenvolvimento, onde determinados dados são transmistidos através dessa API para o Front 
+da aplicação.
+
+A pasta onde se localiza os arquivos da API é "data" e o arquivo "db.json"; No arquivo packge.json, foi 
+onde a "rota" da API foi criada, ou seja, ao inicializar o projeto a API será executada a partir do código 
+" "server": "json-server --watch data/db.json" " que está em scritpts, dentro do arquivo mencionado, lembrando
+que é necessário excutar o npm run server para que a API será chamada.
+
+***Importe***
+**Caso apareça o erro "'json-server' não é reconhecido como um comando interno ou externo, um programa operável 
+ou um arquivo em lotes." " realize a instalação do jason server através do comando npm install json-server, através
+do terminal, pois, se trata de um erro de instalação dos pacotes do json server.**
+
+
+
+Uma breve apresentação do projeto foi realizada, agora é hora de por a mão na massa e o primeiro passo é resgatar os dados 
+dessa API e para isso vão ser utilizados os seguintes recursos:
+1º - Ter um local para salva-los, vai ser utilizado o hook useState para fazer essa operação.
+2º - Renderizar a chamada da API apenas uma vez, para isso utiliza-se outro hook que é o useEffect.
+3º - Um meio de fazer a requisão assíncrona, ou seja, os dados serão retornados através de uma fetch API, através do 
+metodo HTTP.
+
+
+A requisição, da API, foi realizada no arquivo APP.js onde foi criada uma função assincrona para realizar a requisão, basicamente
+dentro da função APP foi criada uma constante com o produto e seu estado e dando a opção de manipulação através do useState, a baixo
+foi criada a função assincrona junto ao paramentros de retorno da API, ou seja, a função fetchData recebe os paramentros e os "lê" 
+para repassar para API, a chamada para o front da aplicação foi feita no "Return" da função, onde foram utilizadas as props para 
+invocar a API e seus dados.
+
+Através do metodo Post, dentro do arquivo APP.js, foi criada uma requisação onde possibilita a criação de um novo item na lista de 
+produtos, onde a função handleSubmit recebe um metodo, assincrono, recebe dos inputs a requisão e as envia para dentro da aplicação
+criando assim um novo produto, porém, essa criação não é dinâmica, ou seja, precisa recarregar a página para que o produto apareça, uma
+maneira de solucionar foi criando uma variavel, onde a função captura o estado antigo, através do useState, e passa a receber o novo produto
+adicionando-o instataneamente a aplicação.
+
+
+
+***Dica****
+**Utilizei o useEffect dentro da própria função, assim foi feita a requisão dos dados da API, porém, é possível criar um Hook para que seja feita
+a requisão a partir dele, deixando o código mais limpo, a baixo deixo um exemplo de como ficaria o Hook e deixo comentado no APP.js como utilizaria 
+esse hook.
+
+import { useState, useEffect } from "react";
+
+export const useFetch = (url) => {
+  const [data, setData] = useState(null)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(url);
+      const json = await res.json();
+
+      setData(jason);
+    };
+
+  fetchData();
+
+  }, [url]);
+  retur { data };
+}
+
+E assim ficaria o hooks caso necessário a sua criação, lembrando que a criação de um novo hook nem sempre
+é uma boa opção.
